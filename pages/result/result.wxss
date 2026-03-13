@@ -1,0 +1,222 @@
+/* pages/result/result.wxss */
+/* 滚动区域样式保持不变 */
+.result-scroll {
+  height: 100vh;
+  width: 100%;
+  background-color: #f8f9fa; /* 页面背景改为浅灰色，增强内容对比度 */
+}
+
+.result-container {
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+/* 总分区域优化 */
+.total-score-container {
+  background: #e6f7ef; /* 加深浅绿色背景 */
+  border-radius: 16rpx; /* 增大圆角 */
+  padding: 40rpx 30rpx;
+  margin-bottom: 30rpx;
+  text-align: center;
+  box-shadow: 0 4rpx 15rpx rgba(66, 185, 131, 0.15);
+}
+
+.score-title {
+  font-size: 30rpx;
+  color: #2d3748; /* 加深文字颜色 */
+  margin-right: 10rpx;
+  font-weight: 500;
+}
+
+.score-value {
+  font-size: 56rpx;
+  font-weight: 700;
+  color: #42b983; /* 主色加粗，更醒目 */
+  margin: 0 15rpx;
+}
+
+.score-max {
+  font-size: 30rpx;
+  color: #718096; /* 灰色加深，避免过淡 */
+}
+
+/* 题目列表容器优化 */
+.question-result-list {
+  background: #ffffff;
+  border-radius: 16rpx;
+  padding: 35rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
+}
+
+.question-result-item {
+  margin-bottom: 50rpx;
+}
+
+.question-result-item:last-child {
+  margin-bottom: 20rpx;
+}
+
+/* 题目序号和得分优化 */
+.question-result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+  padding-bottom: 12rpx;
+  border-bottom: 2rpx solid #e6f7ef; /* 加深分隔线 */
+}
+
+.question-num {
+  font-weight: bold;
+  color: #42b983; /* 深灰色，更醒目 */
+  font-size: 35rpx;
+  flex: 1;
+}
+
+.question-score {
+  color: #42b983;
+  font-size: 35rpx;
+  font-weight: bold;
+  background: #f0f9f0;  
+  border-radius: 30rpx; /* 胶囊样式，更突出 */
+  padding: 4rpx 10rpx;
+  padding: 4rpx 10rpx;   /* 保留原有上下内边距，左右内边距按需微调 */
+  /* 核心修改1：取消flex:1（避免占满父容器长度） */
+  /* 核心修改2：设置固定宽度（实现长度减半，可根据需求调整） */
+  width: 160rpx;
+  /* 核心修改3：margin-left:auto 实现靠右对齐（需父元素为flex布局） */
+  margin-left: auto;
+  text-align: center; /* 胶囊内文字仍居中 */
+  /* 可选：限制最小/最大宽度，避免长度异常 */
+  min-width: 100rpx;
+  max-width: 160rpx;
+  /* 可选：固定高度，保证样式统一 */
+  height: 40rpx;
+  line-height: 30rpx; /* 行高等于高度，文字垂直居中 */
+  box-sizing: border-box; /* 内边距不占用宽度，保证长度精准 */
+}
+
+/* 题目内容文字优化 */
+.question-content {
+  color: #2d3748;
+  font-size: 30rpx; /* 增大字体 */
+  line-height: 2.0;
+}
+
+/* 填空答案区域优化（核心视觉调整） */
+.blank-result {
+  margin: 20rpx 0;
+  padding: 24rpx;
+  background: #fafafa;
+  border-radius: 12rpx;
+  border-left: 6rpx solid #42b983; /* 左侧绿色边框，增强区域区分 */
+}
+
+.answer-label {
+  font-weight: 600;
+  color: #2d3748; /* 深灰色标签，不淡化 */
+  margin-bottom: 12rpx;
+  display: block;
+  font-size: 30rpx;
+}
+
+/* 用户答案区域（基准样式） */
+.user-answer {
+  margin-bottom: 20rpx;
+  line-height: 2.2;
+  word-break: break-all;
+  white-space: pre-wrap;
+  padding: 18rpx;
+  background-color: #ffffff; /* 白色背景 */
+  border-radius: 8rpx;
+  border: 2rpx solid #e8f4f8; /* 浅蓝色边框 */
+  font-size: 30rpx; /* 修正：px改rpx，适配多设备 */
+  color: #2d3748; /* 统一文字颜色 */
+  text-align: left; /* 显式声明左对齐，避免继承其他样式 */
+}
+
+/* 新增：逐字符渲染容器，紧凑排版 */
+.char-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rpx; /* 字符间微小间距，避免重叠 */
+  align-items: center;
+}
+
+/* 标准答案区域（核心修改：左对齐 + 与用户答案样式统一） */
+.standard-answer {  
+  color: #2d3748; /* 深灰色文字，避免绿色过淡 */
+  line-height: 2.2;
+  word-break: break-all;
+  white-space: pre-wrap;
+  padding: 18rpx;
+  border-radius: 8rpx;
+  font-size: 30rpx; /* 修正：px改rpx，适配多设备 */  
+  /* 关键修改2：统一背景/边框样式，与用户答案框一致 */
+  background-color: #ffffff;
+  border: 2rpx solid #e8f4f8;
+  /* 关键修改1：强制文字靠左对齐 */
+  text-align: left !important;
+}
+
+/* 正确答案文字（绿色加深） */
+.correct {
+  color: #38a169;
+  font-weight: 500;
+  padding: 1rpx 2rpx;
+  border-radius: 2rpx;
+}
+
+/* 错误答案文字（红色加深+背景标红） */
+.incorrect {
+  color: #e53e3e;
+  text-decoration: underline;
+  font-weight: 700;
+  background-color: #fee;
+  padding: 1rpx 2rpx;
+  border-radius: 2rpx;
+}
+
+/* 未作答文字（加深灰色，不淡化） */
+.no-answer {
+  color: #718096;
+  font-style: italic;
+  font-size: 25rpx; /* 修正：px改rpx，适配多设备 */
+}
+
+/* 分隔线优化 */
+.question-divider {
+  height: 2rpx;
+  background: #f0f0f0;
+  margin-top: 20rpx;
+}
+
+/* 重新答题按钮优化 */
+.restart-btn-container {
+  margin-top: 40rpx;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.restart-btn {
+  width: 90%;
+  padding: 30rpx 0;
+  text-align: center; /* 文字水平居中 */
+  font-size: 44rpx;
+  font-weight: 600;
+  /* 补充：若需和首页“进入答题”按钮样式一致，可参考如下通用样式（根据首页实际样式调整） */
+  color: #ffffff;
+  background-color: #42b983;
+  border-radius: 100rpx;
+  box-shadow: 0 6rpx 16rpx rgba(66, 185, 131, 0.25);
+  border: none;
+}
+
+/* 按钮点击态（补充：匹配首页按钮交互） */
+.restart-btn:active {
+  background-color: #38a169;
+  box-shadow: 0 4rpx 12rpx rgba(66, 185, 131, 0.2);
+  transform: translateY(2rpx);
+}

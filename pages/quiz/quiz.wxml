@@ -1,0 +1,34 @@
+<!--pages/quiz/quiz.wxml-->
+<!-- 外层容器添加高度100vh，确保scroll-view占满屏幕 -->
+<view style="height: 100vh; overflow: hidden;">
+  <scroll-view 
+    scroll-y="true" 
+    bindscroll="onScroll" 
+    class="quiz-scroll" 
+    scroll-with-animation
+    bindscrolltolower="onScrollToLower" 
+  >
+    <view class="quiz-container">
+      <!-- 题目列表 -->
+      <view class="question-list">
+        <block wx:for="{{questions}}" wx:key="id">
+          <fill-question 
+            question="{{item}}"
+            question-num="{{index + 1}}"
+            user-answers="{{userAnswers.fill}}"
+            bind:inputChange="handleFillInput"
+          ></fill-question>
+          <view class="question-divider"></view>
+        </block>
+      </view>
+      
+      <!-- 底部占位（增加高度，确保滚动到底部时完全露出按钮区域） -->
+      <view class="bottom-placeholder"></view>
+    </view>
+  </scroll-view>
+
+  <!-- 交卷按钮（优化定位，确保不被遮挡） -->
+  <view class="submit-btn-container" wx:if="{{showSubmitBtn}}">
+    <button bindtap="submitQuiz" class="submit-btn">确认交卷</button>
+  </view>
+</view>

@@ -1,0 +1,44 @@
+<view class="fill-question">
+   <!-- 题目标题（使用第一个文本片段） -->
+   <view class="question-header">
+   <!-- {{questionNum}}. -->
+    <text class="question-num">{{question.titleFragments[0].content}} （{{question.questionMaxScore}}分）</text>
+  </view>
+  <!-- 题目内容（含填空框） -->
+  <view class="question-content">
+    <block wx:for="{{question.titleFragments}}" wx:key="index">
+      <!-- 跳过第一个text类型的片段不显示 -->
+      <view class="content-fragment" wx:if="{{!(index === 0 && item.type === 'text')}}">       
+        <text wx:if="{{item.type === 'text'}}" class="question-text">{{item.content}}</text>     
+        <!-- 条件渲染：单行input / 多行textarea（仅区分输入框，无重复循环 ✅） -->
+        <!-- 前14题：单行输入，30字限制 -->
+        <input
+          wx:if="{{!isLongAnswer && item.type === 'blank'}}"
+          class="blank-input fill-input"
+          placeholder="请填写答案"
+          placeholder-style="color:#999; font-size:32rpx;"
+          data-blank-id="{{item.blankId}}"
+          value="{{userAnswers[item.blankId] || ''}}"
+          bindinput="handleInput"
+          maxlength="30"
+          type="text"
+          confirm-type="done"
+        />
+        
+        <!-- 长答案：多行输入 -->
+        <textarea
+          wx:elif="{{isLongAnswer && item.type === 'blank'}}"
+          class="blank-input fill-textarea"
+          placeholder="请填写答案"
+          placeholder-style="color:#999; font-size:32rpx;"
+          data-blank-id="{{item.blankId}}"
+          value="{{userAnswers[item.blankId] || ''}}"
+          bindinput="handleInput"
+          maxlength="100"
+          auto-height="{{true}}"
+          show-confirm-bar="{{false}}"
+        />     
+      </view>
+    </block>
+  </view> 
+</view>

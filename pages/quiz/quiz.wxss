@@ -1,0 +1,75 @@
+/* pages/quiz/quiz.wxss */
+/* 页面容器保持不变 */
+.page-container {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  background-color: #f5f5f5;
+}
+
+/* 滚动区域：调整底部预留高度，适配按钮外框 */
+.quiz-scroll {
+  height: 100vh;  /* 减少预留高度，与首页按钮高度匹配 */
+  width: 100%;
+  background-color: #fff;
+  overflow-y: auto;
+}
+
+.quiz-container {
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.question-list {
+  background: #fff;
+  border-radius:16rpx;
+  padding: 30rpx;
+  box-shadow: 120rpx;
+}
+
+/* 确保容器内的按钮可以正常交互 */
+.question-divider {
+  height: 2rpx;
+  background: #e6f7ef;
+  margin: 30rpx 0;
+}
+
+/* 交卷按钮样式 */
+.submit-btn-container {
+  position: fixed;
+  bottom: 30rpx;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  padding: 0 20rpx;
+  pointer-events: none; /* 让点击穿透容器 */
+}			   
+.submit-btn {
+  pointer-events: auto; /* 按钮本身需要可点击 */
+  border: none; /* 去除默认边框 */
+
+  width: 90%;   
+  /*height: 90rpx;*/ 
+  border-radius: 100rpx; /*四个角都应用相同的半径 左上角、右上角、右下角、左下角（顺时针顺序）*/ 
+  background-color: #42b983;
+  color: #fff;
+  padding: 30rpx 0; /* 设置元素的内边距，即元素内容与其边框之间的空间 按上、右、下、左的顺时针方向分别设置,上下为30，左右为0*/
+  text-align: center; /* 文字水平居中 */
+  /* line-height:90rpx; 行高等于高度，实现文字垂直居中 */ 
+  font-size: 44rpx !important; /* 添加 !important 提升优先级 */
+  font-weight: 600;
+  box-shadow: 0 4rpx 16rpx rgba(36, 185, 173, 0.4); /* 使按钮在悬停时产生“浮起”的立体效果 */
+}
+
+.submit-btn:active {
+  background-color: #42b983;
+  transform: scale(1.3); /* 使元素在水平方向（X轴）和垂直方向（Y轴）上同时等比例缩小/放大 */
+  box-shadow: 0 2rpx 8rpx rgba(36, 185, 173, 0.3);
+}
+
+/* 底部占位：与按钮高度匹配，确保最后一题不被遮挡 */
+.bottom-placeholder {
+  height: 150rpx;  /* 仅保留少量占位，按钮外框有背景色兜底 */
+  width: 100%;
+}

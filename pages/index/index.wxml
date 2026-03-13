@@ -1,0 +1,23 @@
+<!--pages/index/index.wxml-->
+<view class="index-container">
+  <!-- LOGO区域 -->
+  <view class="logo-container">
+    <image src="/images/logo.png" mode="widthFix" class="logo-img"></image>
+  </view>
+
+  <!-- 系统名称 -->
+  <view class="system-name">
+    <text class="title">企业文化考试小程序</text>
+    <text class="subtitle">macong@westaport.com</text>
+  </view>
+
+  <!-- 开始答题按钮 -->
+  <view class="start-btn" bindtap="startQuiz">
+    <text class="btn-text">进入答题</text>
+  </view>
+
+  <!-- 底部说明 -->
+  <view class="footer-hint">
+    <text>答题完成后请滚动至页面底部交卷</text>
+  </view>
+</view>

@@ -1,0 +1,19 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/quiz/quiz",
+    "pages/result/result"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#42b983",
+    "navigationBarTitleText": "西部机场集团企业文化理念",
+    "navigationBarTextStyle": "white"
+  },
+  "usingComponents": {
+    "fill-question": "/components/fill-question/fill-question",
+    "choice-question": "/components/choice-question/choice-question",
+    "essay-question": "/components/essay-question/essay-question"
+  },
+  "sitemapLocation": "sitemap.json"
+}

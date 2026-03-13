@@ -1,0 +1,47 @@
+/* 全局样式重置与基础配置 */
+page, view, text, image, button, navigator, scroll-view {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+page {
+  background-color: #f5f7fa;  /* 页面背景色（与导航栏区分） */
+  font-size: 16px;
+  line-height: 1.8;
+  color: #333;
+}
+
+/* 主色调：浅绿色 #42b983 */
+.primary-color {
+  color: #42b983;
+}
+
+/* Button基础样式（区分风格） */
+button {
+  border-radius: 12rpx;
+  font-size: 18rpx ;
+  font-weight: normal ;
+}
+
+/* 按钮样式 */
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #42b983;
+  color: white;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+/* 定义鼠标悬停时的样式 */
+.btn:hover {
+  background-color: #359469; /* 悬停时背景色 */
+  /* color: #f1c40f;  悬停时文字颜色变为黄色 */
+}
+/* 移除button默认边框 */
+button::after {
+  border: none !important;
+}

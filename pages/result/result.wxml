@@ -1,0 +1,68 @@
+<!--pages/result/result.wxml-->
+<scroll-view scroll-y="true" class="result-scroll">
+  <view class="result-container">
+    <!-- 总分显示区域 -->
+    <view class="total-score-container">
+      <text class="score-title">您的总得分为：</text>
+      <text class="score-value">{{totalScore}}</text>
+      <text class="score-max">/{{maxScore}}分</text>
+    </view>
+    
+    <!-- 题目详情列表 - 按大题目整体展示 -->
+    <view class="question-result-list">
+      <block wx:for="{{questions}}" wx:key="id">
+        <view class="question-result-item">
+          <!-- 题目序号+得分（大题目维度） -->
+          <view class="question-result-header">
+            <text class="question-num">{{item.titleFragments[0].content}}</text>
+            <text class="question-score">{{questionScores[item.id] || 0}}/{{item.questionMaxScore}}分</text>
+          </view>
+          
+          <!-- 题目完整内容（整合所有文本+填空） -->
+          <view class="question-content">
+            <view class="question-full-content">
+              <!-- 遍历题目所有片段，整合渲染题干+填空 -->
+              <block wx:for="{{item.titleFragments}}" wx:key="index">                           
+                <!-- 跳过第一个text类型的片段不显示 标题-->
+                <view wx:if="{{!(index === 0 && item.type === 'text')}}"> 
+                  <!-- 文本片段（题干）正常显示 -->
+                  <text wx:if="{{item.type === 'text'}}" class="question-text">{{item.content}}</text>                     
+                  <!-- 填空区域（逐字符标红错误） -->
+                  <view wx:if="{{item.type === 'blank'}}" class="blank-result inline-blank">
+                    <view class="answer-group">
+                      <!-- 用户答案（逐字符渲染） -->
+                      <view class="answer-label">您的答案：</view>
+                      <view class="user-answer char-list">
+                        <block wx:if="{{answerResults[item.blankId].userAnswer === ''}}">
+                          <text class="no-answer">⚠️ 未作答</text>
+                        </block>
+                        <block wx:else>
+                          <block wx:for="{{answerResults[item.blankId].diffs}}" wx:key="index">
+                            <text class="{{item.correct ? 'correct' : 'incorrect'}}">{{item.text}}</text>
+                          </block>
+                        </block>
+                      </view>  <!-- 闭合user-answer -->
+                      
+                      <!-- 标准答案 -->
+                      <view class="answer-label">标准答案：</view>              
+                      <view class="standard-answer">
+                        {{answerResults[item.blankId].standardAnswer || '暂无标准答案'}}
+                      </view> 
+                    </view>   <!-- 闭合answer-group -->
+                  </view>  <!-- 闭合blank-result -->
+                </view> <!-- 闭合跳过第一个text类型的片段不显示 -->
+              </block>
+            </view>  <!-- 闭合question-full-content -->
+          </view> <!-- 闭合question-content -->
+         
+          <view class="question-divider"></view>
+        </view>
+      </block>
+    </view>
+    
+    <!-- 重新答题按钮 -->
+    <view class="restart-btn-container">
+      <button bindtap="restartQuiz" class="button-secondary restart-btn">重新答题</button>
+    </view>
+  </view>
+</scroll-view>

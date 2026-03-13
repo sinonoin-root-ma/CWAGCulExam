@@ -1,0 +1,69 @@
+.fill-question {
+  margin-bottom: 40rpx;
+}
+
+.question-header {
+  margin-bottom: 16rpx;
+  padding-bottom: 8rpx;
+  border-bottom: 1px solid #eee; /* 增加下划线区分标题 */
+}
+
+.question-num {
+font-weight: bold;
+  color: #42b983;
+  font-size: 32rpx; /* 增大标题字体 */
+  flex: 1;
+}
+
+.question-content {
+  /*display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;*/
+  /* 关键改动：添加以下样式以启用换行符  pre-line */
+  white-space: pre-line;
+  /* 可以在这里添加一些内边距或行高 */
+  line-height: 1.8;
+}
+/* 新增：为每个内容片段添加样式 */
+.content-fragment {
+  display: block; /*flex*/
+  align-items: center; /* 垂直居中对齐 */
+  margin-bottom: 8rpx; /* 每个片段之间增加一些垂直间距 */
+}
+
+.question-text {
+  /* 确保文本不会被挤压 
+  flex-shrink: 0;  */
+  font-size: 16px;
+  color: #333;
+}
+/* 填空输入框基础样式 */
+.blank-input {
+  margin: 0 8rpx;
+  padding: 15rpx 10rpx;/* 增加上下内边距 (padding-top, padding-bottom) 来增高输入框 */
+  font-size: 16px;
+  color: #2f54eb; /* 输入内容蓝色（与题目文字区分） */
+  line-height: 1.5; /* 保持合适的行高，确保文字垂直居中 */
+  min-height: 60rpx;  /* 设置一个最小高度 */											   
+  text-align: left;
+}
+
+/* 短答案输入框（前14题）- 自适应宽度 */
+.fill-input {
+  border-bottom: 2rpx solid #e8e8e8;
+  min-width: 200rpx; /* 默认10个汉字宽度 */
+  max-width: 600rpx; /* 30字最大宽度 */
+}
+
+/* 长答案输入框（后2题）- 自适应高度 */
+.fill-textarea {
+  width: 100%;
+  min-height: 200rpx;
+  border: 2rpx solid #e8e8e8;
+  border-radius: 12rpx;
+  padding: 16rpx;
+  margin: 16rpx 0;
+  min-width: 100%;
+  word-break: break-all;
+  background-color: #e6f7ef; /* 浅绿色背景区分 */
+}

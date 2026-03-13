@@ -1,0 +1,46 @@
+<!-- 题目内容（含填空框） -->
+  <view class="question-content">    
+    <block wx:for="{{question.id}}" wx:key="qstitle_index">
+      <block wx:if="{{!question.isLongAnswer}}">
+        <block wx:for="{{question.titleFragments}}" wx:key="index">
+          <!-- 跳过第一个text类型的片段不显示 -->
+          <view class="content-fragment" wx:if="{{!(index === 0 && item.type === 'text')}}">       
+            <text wx:if="{{item.type === 'text'}}" class="question-text">{{item.content}}</text>           
+            <!-- 填空输入框：单行输入，禁止换行（input原生特性） -->
+            <input 
+              class="blank-input fill-input" 
+              placeholder="请填写答案" 
+              placeholder-style="color:#999; font-size:32rpx;"
+              data-blank-id="{{item.blankId}}"
+              value="{{userAnswers[item.blankId] || ''}}" 
+              bindinput="handleInput"
+              maxlength="30"
+              type="text"
+              confirm-type="done"
+            />
+          </view>  <!--闭合content-fragment -->
+        </block>
+      </block>
+      <block wx:else>
+        <block wx:for="{{question.titleFragments}}" wx:key="index">
+          <!-- 跳过第一个text类型的片段不显示 -->
+          <view class="content-fragment" wx:if="{{!(index === 0 && item.type === 'text')}}">       
+            <text wx:if="{{item.type === 'text'}}" class="question-text">{{item.content}}</text>           
+            <!-- 填空输入框：单行输入，禁止换行（input原生特性） -->
+            <!-- 多行输入：maxlength复用现有maxLength，开启自动换行+高度自适应 -->
+            <textarea 
+              class="blank-input fill-textarea" 
+              placeholder="请填写答案" 
+              placeholder-style="color:#999; font-size:32rpx;"
+              data-blank-id="{{item.blankId}}"
+              value="{{userAnswers[item.blankId] || ''}}" 
+              bindinput="handleInput"
+              maxlength="100"
+              auto-height="{{true}}"
+              show-confirm-bar="{{false}}" 
+            />
+          </view>  <!--闭合content-fragment -->
+        </block>        
+      </block>     
+    </block>
+  </view>  <!--闭合question-content -->
